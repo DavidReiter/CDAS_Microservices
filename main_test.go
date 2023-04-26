@@ -17,7 +17,7 @@ import (
 var a App
 
 func TestMain(m *testing.M) {
-	a.Initialize("postgres", "example", "postgres")
+	a.Initialize("postgres", "postgres", "postgres")
 
 	ensureTableExists()
 	code := m.Run()
