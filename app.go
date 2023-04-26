@@ -153,10 +153,7 @@ func (a *App) deleteProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) getProductsBelowPrice(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	maxPrice, err := strconv.Atoi(vars["maxPrice"])
-
-	println(maxPrice)
+	maxPrice, err := strconv.Atoi(r.FormValue("maxPrice"))
 
 	if err != nil {
 		println(err.Error())
@@ -164,7 +161,7 @@ func (a *App) getProductsBelowPrice(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	products, err := getProductsBelowPrice(a.DB, 15)
+	products, err := getProductsBelowPrice(a.DB, maxPrice)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return

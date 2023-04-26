@@ -68,7 +68,6 @@ func getProducts(db *sql.DB, start, count int) ([]product, error) {
 }
 
 func getProductsBelowPrice(db *sql.DB, maxPrice int) ([]product, error) {
-	println(maxPrice)
 	rows, err := db.Query("SELECT id, name, price FROM products WHERE price < $1", maxPrice)
 
 	if err != nil {

@@ -192,7 +192,7 @@ func TestGetProductsBelowPrice(t *testing.T) {
 	clearTable()
 	addProducts(3)
 
-	req, _ := http.NewRequest("GET", "/products/belowprice?maxPrice=15", nil)
+	req, _ := http.NewRequest("GET", "/products/belowprice?maxPrice=21", nil)
 	response := executeRequest(req)
 
 	checkResponseCode(t, http.StatusOK, response.Code)
@@ -205,8 +205,8 @@ func TestGetProductsBelowPrice(t *testing.T) {
 	}
 
 	for _, p := range products {
-		if p.Price >= 15 {
-			t.Errorf("Expected product price to be below 15, got %f", p.Price)
+		if p.Price >= 21 {
+			t.Errorf("Expected product price to be below 21, got %f", p.Price)
 		}
 	}
 }
